@@ -1,5 +1,5 @@
 // Seções depois do hero: textos que entram por marco (por tempo, nunca arrastados pela rolagem), a frase da história
-// que acende linha a linha, fotos com paralaxe (só a imagem segue a rolagem), âncoras pela Lenis e os copos.
+// que acende linha a linha, fotos com paralaxe (só a imagem segue a rolagem), e âncoras pela Lenis.
 import { gsap } from 'gsap';
 import { lenis, rolagem } from './rolagem.js';
 
@@ -7,7 +7,6 @@ export function secoes({ reduzido }) {
   revela({ reduzido });
   if (!reduzido) paralaxe();
   ancoras();
-  copos();
 }
 
 // cada grupo entra quando chega a 25% da tela e volta a esconder quando sai por baixo (rolando para cima): na próxima
@@ -82,13 +81,4 @@ function ancoras() {
     if (lenis) lenis.scrollTo(alvo, { duration: 1.6 });
     else alvo.scrollIntoView();
   });
-}
-
-// copos: o clique deixa o escolhido marcado (o hover que apaga os outros é CSS); clicar de novo solta
-function copos() {
-  const todos = [...document.querySelectorAll('.copo')];
-  todos.forEach(c => c.addEventListener('click', () => {
-    const marca = c.getAttribute('aria-pressed') !== 'true';
-    todos.forEach(o => o.setAttribute('aria-pressed', String(o === c && marca)));
-  }));
 }

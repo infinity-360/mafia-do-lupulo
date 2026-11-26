@@ -7,7 +7,7 @@ import './sections/hero.css';
 import './sections/secoes.css';
 import './estilo.js';
 
-import { hero } from './motion/hero.js';
+import { palco } from './motion/palco.js';
 import { nav } from './motion/nav.js';
 import { barra } from './motion/barra.js';
 import { secoes } from './motion/secoes.js';
@@ -21,4 +21,4 @@ nav();
 barra();
 secoes({ reduzido });
 trilho();
-hero({ reduzido });
+palco({ reduzido });

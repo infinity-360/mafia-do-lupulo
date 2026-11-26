@@ -4,13 +4,8 @@
 /* antes do marco, o texto que entra por máscara fica escondido (sem JS, aparece) */
 html.js [data-revela], html.js [data-revela-botao] { opacity: 0; }
 
-/* ---------- os copos (no lugar das três latas) ---------- */
-.copos { position: relative; padding: clamp(110px, 16vh, 190px) var(--gutter) clamp(80px, 12vh, 140px); background: var(--preto); }
-.copos__topo { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-.copos__sobre { font-family: var(--script); font-size: clamp(24px, 2.2vw, 40px); color: var(--sol); }
-.copos__titulo { font-size: clamp(44px, 6.4vw, 124px); line-height: 0.9; }
-.copos__titulo .linha { padding: 0.08em 0 0.1em; margin: -0.08em 0 -0.1em; }
-.copos__titulo [data-revela], .onde__card h2 [data-revela], .processo__abre h2 [data-revela] {
+/* títulos grandes em dourado escovado */
+.onde__card h2 [data-revela], .processo__abre h2 [data-revela] {
   font-weight: 800;
   font-stretch: 62%;
   text-transform: uppercase;
@@ -19,39 +14,6 @@ html.js [data-revela], html.js [data-revela-botao] { opacity: 0; }
   background-clip: text;
   color: transparent;
 }
-
-.copos__fila { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2.4vw, 48px); max-width: 1180px; margin: clamp(40px, 6vh, 80px) auto 0; }
-.copo { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; transition: opacity 0.6s var(--entra); }
-.copo__foto { position: relative; display: block; width: min(100%, calc(58svh * 3 / 4)); aspect-ratio: 3 / 4; overflow: clip; border-radius: 4px; margin-bottom: 22px; }
-/* o copo sai do escuro: a foto some nas bordas para o preto da página */
-.copo__foto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  -webkit-mask-image: radial-gradient(ellipse 72% 66% at 50% 52%, #000 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse 72% 66% at 50% 52%, #000 55%, transparent 100%);
-  transition: transform 1.2s var(--entra);
-}
-.copo__foto::after { content: ''; position: absolute; left: 15%; right: 15%; bottom: 2%; height: 10%; border-radius: 50%; background: radial-gradient(rgba(242, 154, 29, 0.35), transparent 70%); opacity: 0; transition: opacity 0.6s; }
-.copo__nome { font-size: clamp(26px, 2.6vw, 48px); font-weight: 800; font-stretch: 62%; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; }
-/* o pontinho âmbar acende antes do nome do copo em foco */
-.copo__nome > span { display: inline-flex; align-items: center; gap: 0.35em; transition: color 0.4s; }
-.copo__nome > span::before { content: ''; width: 0.22em; height: 0.22em; border-radius: 50%; background: var(--sol); transform: scale(0); transition: transform 0.6s var(--entra); }
-.copo__estilo { font-size: var(--f-rotulo); letter-spacing: var(--rastro); text-transform: uppercase; color: var(--tinta-2); }
-.copo:hover .copo__foto img, .copo:focus-visible .copo__foto img, .copo[aria-pressed='true'] .copo__foto img { transform: scale(1.04); }
-.copo:hover .copo__foto::after, .copo:focus-visible .copo__foto::after, .copo[aria-pressed='true'] .copo__foto::after { opacity: 1; }
-.copo:hover .copo__nome > span, .copo:focus-visible .copo__nome > span, .copo[aria-pressed='true'] .copo__nome > span { color: var(--sol-forte); }
-.copo:hover .copo__nome > span::before, .copo:focus-visible .copo__nome > span::before, .copo[aria-pressed='true'] .copo__nome > span::before { transform: scale(1); }
-/* um copo em foco apaga os outros */
-.copos__fila:has(.copo:hover) .copo:not(:hover),
-.copos__fila:has(.copo:focus-visible) .copo:not(:focus-visible),
-.copos__fila:has([aria-pressed='true']):not(:has(.copo:hover)) .copo:not([aria-pressed='true']) { opacity: 0.32; }
-.copo:focus-visible { outline: none; }
-.copo:focus-visible .copo__foto { outline: 1px solid var(--tinta); outline-offset: 6px; }
-.copo:active .copo__foto img { transform: scale(0.98); transition-duration: 0.15s; }
-
-.copos__pe { display: flex; justify-content: space-between; align-items: center; gap: 30px; max-width: 1320px; margin: clamp(40px, 7vh, 80px) auto 0; padding-top: 28px; border-top: 1px solid var(--linha); }
-.copos__nota { font-size: var(--f-lema); letter-spacing: 0.22em; line-height: 1.75; text-transform: uppercase; color: var(--tinta-2); }
 
 /* ---------- história ---------- */
 .historia { padding: clamp(110px, 18vh, 200px) 0 clamp(90px, 14vh, 160px); background: var(--preto); }
@@ -162,8 +124,6 @@ html.js [data-revela], html.js [data-revela-botao] { opacity: 0; }
 
 /* ---------- celular ---------- */
 @media (max-width: 760px) {
-  .copos__fila { grid-template-columns: 1fr; max-width: 420px; gap: 46px; }
-  .copos__pe { flex-direction: column; align-items: flex-start; }
   .historia__moldura { aspect-ratio: 4 / 5; }
   .processo__abre { width: 78vw; }
   .passo__foto { height: 58svh; }

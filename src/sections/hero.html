@@ -1,40 +1,83 @@
-<!-- hero: o filme da Máfia em loop ao fundo (mudo, com botão de som) e a logo surgindo do escuro.
-     Quando a logo assenta, HOW BEER e SHOULD BE saem de trás dela e os textos sobem pela máscara (motion/hero.js). -->
-<section class="hero" id="inicio" data-hero>
-  <div class="hero__filme" aria-hidden="true">
-    <video class="hero__video" data-video src="/video/mafia.mp4" poster="/img/video-poster.jpg" muted loop playsinline autoplay preload="auto" disablepictureinpicture></video>
-  </div>
+<!-- palco do topo (a estrutura da Akari, com copos no lugar das latas): uma seção alta com o hero preso na tela.
+     Abertura (por tempo): o filme da Máfia ao fundo, a logo surge do escuro e dá lugar ao copo; HOW BEER e SHOULD BE
+     saem de trás dele. Rolando (preso à rolagem): as palavras voltam para trás do copo e os outros dois copos saem de
+     trás dele até ficarem em linha; no fim, os nomes sobem embaixo de cada um (motion/palco.js). -->
+<section class="palco" id="inicio" data-palco>
+  <i class="palco__ancora" id="copos" aria-hidden="true"></i>
+  <div class="hero" data-hero data-estado="hero">
+    <div class="hero__filme" aria-hidden="true">
+      <video class="hero__video" data-video src="/video/mafia.mp4" poster="/img/video-poster.jpg" muted loop playsinline autoplay preload="auto" disablepictureinpicture></video>
+    </div>
 
-  <h1 class="hero__titulo" aria-label="Máfia do Lúpulo. How beer should be.">
-    <span class="metade metade--esq" aria-hidden="true"><span data-entra="titulo">How beer</span></span>
     <span class="logo" data-logo aria-hidden="true">
       <span class="logo__halo"></span>
       <img class="logo__img" src="/img/logo.webp" alt="" width="900" height="900" fetchpriority="high" />
       <span class="logo__brilho"></span>
     </span>
-    <span class="metade metade--dir" aria-hidden="true"><span data-entra="titulo">should be</span></span>
-  </h1>
 
-  <p class="hero__lema">
-    <i class="fio" data-entra="fio" aria-hidden="true"></i>
-    <span class="linhas">
-      <span class="linha"><span data-entra="linha">Micro-cervejaria</span></span>
-      <span class="linha"><span data-entra="linha">artesanal · Apucarena</span></span>
-    </span>
-  </p>
+    <!-- os três copos: o do meio é o hero; os dos lados nascem de trás dele com a rolagem -->
+    <div class="copos" data-copos aria-label="Os chopps">
+      <button class="copo copo--esq" type="button" data-copo="clara" aria-pressed="false" style="--lado: -1">
+        <img class="copo__img" src="/img/copo-clara.webp" alt="Copo de chopp claro com a logo da Máfia do Lúpulo" width="606" height="805" decoding="async" />
+        <span class="copo__nome linha"><span data-entra-copos>Clara</span></span>
+        <span class="copo__estilo linha"><span data-entra-copos>Leve e gelada</span></span>
+      </button>
+      <button class="copo copo--dir" type="button" data-copo="grenadine" aria-pressed="false" style="--lado: 1">
+        <img class="copo__img" src="/img/copo-grenadine.webp" alt="Copo de chopp Grenadine, vermelho, com a logo da Máfia do Lúpulo" width="1051" height="1384" decoding="async" />
+        <span class="copo__nome linha"><span data-entra-copos>Grenadine</span></span>
+        <span class="copo__estilo linha"><span data-entra-copos>Intensidade, cor e presença</span></span>
+      </button>
+      <button class="copo copo--meio" type="button" data-copo="dourada" aria-pressed="false" style="--lado: 0">
+        <img class="copo__img" src="/img/copo-dourada.webp" alt="Copo de chopp dourado com a logo da Máfia do Lúpulo" width="828" height="1042" decoding="async" fetchpriority="high" />
+        <span class="copo__nome linha"><span data-entra-copos>Dourada</span></span>
+        <span class="copo__estilo linha"><span data-entra-copos>Mais corpo, cor de ouro</span></span>
+      </button>
+    </div>
 
-  <div class="hero__lado">
-    <p class="linhas hero__apoio">
-      <span class="linha"><span data-entra="linha">Produção própria.</span></span>
-      <span class="linha"><span data-entra="linha">Brewpub quinta e sexta,</span></span>
-      <span class="linha"><span data-entra="linha">das 18h às 23h.</span></span>
+    <!-- duas metades; o copo fica no miolo e as palavras saem de trás dele -->
+    <h1 class="titulo" aria-label="Máfia do Lúpulo. How beer should be.">
+      <span class="metade metade--esq" aria-hidden="true"><span data-entra="titulo">How beer</span></span>
+      <span class="metade metade--dir" aria-hidden="true"><span data-entra="titulo">should be</span></span>
+    </h1>
+
+    <p class="hero__lema">
+      <i class="fio" data-entra="fio" aria-hidden="true"></i>
+      <span class="linhas">
+        <span class="linha"><span data-entra="linha">Micro-cervejaria</span></span>
+        <span class="linha"><span data-entra="linha">artesanal · Apucarena</span></span>
+      </span>
     </p>
+    <div class="hero__lado">
+      <p class="linhas hero__apoio">
+        <span class="linha"><span data-entra="linha">Produção própria.</span></span>
+        <span class="linha"><span data-entra="linha">Brewpub quinta e sexta,</span></span>
+        <span class="linha"><span data-entra="linha">das 18h às 23h.</span></span>
+      </p>
+    </div>
+
+    <!-- UI dos três copos: sobe só quando eles chegam em linha -->
+    <div class="copos__ui">
+      <p class="copos__titulo linhas">
+        <span class="linha copos__sobre"><span data-entra-copos>A seleção Máfia</span></span>
+        <span class="linha"><span data-entra-copos>Do tanque direto pro copo</span></span>
+      </p>
+      <a class="seta" href="https://app.meulink.bio.br/MafiadoLupolo" target="_blank" rel="noopener" data-copos-seta>
+        <span class="seta__circulo" aria-hidden="true">
+          <svg class="seta__anel" viewBox="0 0 76 76"><circle cx="38" cy="38" r="37" pathLength="1000" /></svg>
+          <i class="seta__sol"></i>
+          <svg class="seta__ponta" viewBox="0 0 18 12"><path d="M0 6h16M11 1l5 5-5 5" /></svg>
+        </span>
+        <span class="linhas">
+          <span class="linha"><span data-entra-copos>Ver o</span></span>
+          <span class="linha"><span data-entra-copos>cardápio</span></span>
+        </span>
+      </a>
+    </div>
+
+    <button class="hero__som" type="button" data-som aria-pressed="false">
+      <span class="hero__ondas" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span data-som-rotulo>Ligar som</span>
+    </button>
+    <a class="hero__desce" href="#copos" aria-label="Rolar para os chopps"><i aria-hidden="true"></i></a>
   </div>
-
-  <button class="hero__som" type="button" data-som aria-pressed="false">
-    <span class="hero__ondas" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-    <span data-som-rotulo>Ligar som</span>
-  </button>
-
-  <a class="hero__desce" href="#copos" aria-label="Rolar para os chopps"><i aria-hidden="true"></i></a>
 </section>
