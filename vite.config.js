@@ -16,5 +16,7 @@ const secoes = () => ({
 
 export default defineConfig({
   plugins: [secoes()],
+  // no GitHub Pages o site mora em /mafia-do-lupulo/ (a Action passa BASE); no dev, na raiz
+  base: process.env.BASE ?? '/',
   build: { target: 'es2022', assetsInlineLimit: 0 },
 });
