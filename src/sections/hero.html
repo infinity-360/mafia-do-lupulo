@@ -1,0 +1,40 @@
+<!-- hero: o filme da Máfia em loop ao fundo (mudo, com botão de som) e a logo surgindo do escuro.
+     Quando a logo assenta, HOW BEER e SHOULD BE saem de trás dela e os textos sobem pela máscara (motion/hero.js). -->
+<section class="hero" id="inicio" data-hero>
+  <div class="hero__filme" aria-hidden="true">
+    <video class="hero__video" data-video src="/video/mafia.mp4" poster="/img/video-poster.jpg" muted loop playsinline autoplay preload="auto" disablepictureinpicture></video>
+  </div>
+
+  <h1 class="hero__titulo" aria-label="Máfia do Lúpulo. How beer should be.">
+    <span class="metade metade--esq" aria-hidden="true"><span data-entra="titulo">How beer</span></span>
+    <span class="logo" data-logo aria-hidden="true">
+      <span class="logo__halo"></span>
+      <img class="logo__img" src="/img/logo.webp" alt="" width="900" height="900" fetchpriority="high" />
+      <span class="logo__brilho"></span>
+    </span>
+    <span class="metade metade--dir" aria-hidden="true"><span data-entra="titulo">should be</span></span>
+  </h1>
+
+  <p class="hero__lema">
+    <i class="fio" data-entra="fio" aria-hidden="true"></i>
+    <span class="linhas">
+      <span class="linha"><span data-entra="linha">Micro-cervejaria</span></span>
+      <span class="linha"><span data-entra="linha">artesanal · Apucarena</span></span>
+    </span>
+  </p>
+
+  <div class="hero__lado">
+    <p class="linhas hero__apoio">
+      <span class="linha"><span data-entra="linha">Produção própria.</span></span>
+      <span class="linha"><span data-entra="linha">Brewpub quinta e sexta,</span></span>
+      <span class="linha"><span data-entra="linha">das 18h às 23h.</span></span>
+    </p>
+  </div>
+
+  <button class="hero__som" type="button" data-som aria-pressed="false">
+    <span class="hero__ondas" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span data-som-rotulo>Ligar som</span>
+  </button>
+
+  <a class="hero__desce" href="#copos" aria-label="Rolar para os chopps"><i aria-hidden="true"></i></a>
+</section>

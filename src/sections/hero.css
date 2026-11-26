@@ -1,0 +1,161 @@
+/* Hero: o filme em tela cheia, escurecido nas bordas, e a logo no miolo com HOW BEER / SHOULD BE saindo de trás dela. */
+.hero {
+  --logo: min(34vw, 56svh);
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: clip;
+  display: grid;
+  place-items: center;
+  background: var(--preto);
+}
+
+.hero__filme { position: absolute; inset: 0; opacity: 0; }
+.hero__video { width: 100%; height: 100%; object-fit: cover; }
+/* o vídeo é vertical e de baixa resolução: escurecido e com vinheta ele vira clima, não protagonista */
+.hero__filme::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 50%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.75) 75%, #000 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 22%, transparent 70%, rgba(0, 0, 0, 0.9));
+}
+
+/* ---------- título: duas metades e a logo no meio ---------- */
+.hero__titulo {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr var(--logo) 1fr;
+  align-items: center;
+  width: 100%;
+  font-size: min(6.6vw, 12svh);
+  font-weight: 800;
+  font-stretch: 62%;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+/* cada metade recorta a palavra na borda da logo: ela desliza de trás dela */
+.metade { overflow: clip; padding: 0.1em 0; }
+.metade--esq { text-align: right; padding-right: 0.25em; }
+.metade--dir { text-align: left; padding-left: 0.25em; }
+.metade > span {
+  display: inline-block;
+  opacity: 0;
+  background: var(--dourado);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.6));
+}
+
+/* ---------- a logo ---------- */
+.logo { position: relative; width: var(--logo); aspect-ratio: 1; display: grid; place-items: center; }
+.logo__img { position: relative; z-index: 1; width: 100%; height: 100%; opacity: 0; border-radius: 50%; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7); }
+.logo__halo {
+  position: absolute;
+  inset: -22%;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(circle, rgba(242, 154, 29, 0.5), rgba(242, 154, 29, 0.14) 45%, transparent 68%);
+  animation: respira 5s ease-in-out 3s infinite;
+}
+/* o brilho: uma faixa de luz recortada no círculo, que atravessa a logo uma vez */
+.logo__brilho {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 244, 214, 0.8) 50%, transparent 60%) no-repeat;
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  mix-blend-mode: soft-light;
+}
+@keyframes respira { 50% { transform: scale(1.06); opacity: 0.75; } }
+
+/* ---------- lema à esquerda, apoio à direita ---------- */
+.hero__lema, .hero__lado { position: absolute; z-index: 2; bottom: clamp(70px, 12svh, 130px); }
+.hero__lema {
+  left: var(--gutter);
+  display: flex;
+  gap: clamp(14px, 1.5vw, 26px);
+  font-size: var(--f-lema);
+  letter-spacing: 0.3em;
+  line-height: 1.75;
+  text-transform: uppercase;
+}
+.hero__lema .fio { width: clamp(48px, 5.6vw, 104px); height: 1px; margin-top: 0.85em; background: var(--sol); opacity: 0; }
+.hero__lado { right: var(--gutter); text-align: right; }
+.hero__apoio { font-size: var(--f-lema); letter-spacing: 0.3em; line-height: 1.75; text-transform: uppercase; color: var(--tinta-2); }
+[data-entra="linha"] { opacity: 0; }
+
+/* ---------- som e seta para baixo ---------- */
+.hero__som {
+  position: absolute;
+  z-index: 3;
+  left: var(--gutter);
+  bottom: clamp(18px, 3svh, 36px);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  opacity: 0;
+  font-size: var(--f-rotulo);
+  letter-spacing: var(--rastro);
+  text-transform: uppercase;
+  color: var(--tinta-2);
+  transition: color 0.3s;
+}
+.hero__som:hover, .hero__som:focus-visible { color: var(--tinta); }
+.hero__ondas { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+.hero__ondas i { width: 2px; height: 30%; background: currentColor; transition: height 0.3s; }
+.hero__som[aria-pressed='true'] { color: var(--sol-forte); }
+.hero__som[aria-pressed='true'] .hero__ondas i { animation: onda 0.9s ease-in-out infinite alternate; }
+.hero__som[aria-pressed='true'] .hero__ondas i:nth-child(2) { animation-delay: -0.3s; }
+.hero__som[aria-pressed='true'] .hero__ondas i:nth-child(3) { animation-delay: -0.6s; }
+.hero__som[aria-pressed='true'] .hero__ondas i:nth-child(4) { animation-delay: -0.15s; }
+@keyframes onda { from { height: 20%; } to { height: 100%; } }
+
+.hero__desce {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: clamp(14px, 2.6svh, 30px);
+  width: 26px;
+  height: 42px;
+  margin-left: -13px;
+  border: 1px solid var(--linha-forte);
+  border-radius: 13px;
+  opacity: 0;
+  transition: border-color 0.4s;
+}
+.hero__desce i { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--sol); animation: desce 1.8s var(--entra) infinite; }
+.hero__desce:hover, .hero__desce:focus-visible { border-color: var(--sol); }
+@keyframes desce { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(16px); opacity: 0; } }
+
+/* ---------- tela estreita: o lema fica sozinho embaixo ---------- */
+@media (max-aspect-ratio: 3/2) and (min-aspect-ratio: 4/5) {
+  .hero__lado { display: none; }
+}
+
+/* ---------- celular em pé: HOW BEER em cima, SHOULD BE embaixo da logo ---------- */
+@media (max-aspect-ratio: 4/5) {
+  .hero { --logo: min(72vw, 44svh); }
+  .hero__titulo { grid-template-columns: 1fr; justify-items: center; font-size: min(17vw, 9svh); margin-top: -4svh; }
+  .metade { padding: 0.04em 0; text-align: center; }
+  .metade--esq { padding-right: 0; padding-bottom: 0.12em; }
+  .metade--dir { padding-left: 0; padding-top: 0.12em; }
+  .hero__lado { display: none; }
+  .hero__lema { bottom: 74px; }
+  .hero__som { bottom: 18px; }
+  .hero__desce { left: auto; right: var(--gutter); margin-left: 0; }
+}
+
+/* o menu espera a logo assentar (motion/hero.js); sem JS, tudo aparece */
+html.js .nav { opacity: 0; }
+html:not(.js) :is(.hero__filme, .logo__img, .logo__halo, .metade > span, [data-entra], .hero__som, .hero__desce) { opacity: 1; }

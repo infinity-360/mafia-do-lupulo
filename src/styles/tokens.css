@@ -1,0 +1,32 @@
+/* Máfia do Lúpulo: tokens. Preto de bar à noite, creme do brasão, âmbar do chopp (o laranja das artes do Instagram)
+   e o dourado dos arabescos da logo. */
+:root {
+  --preto: #000;
+  --tinta: #f5eedb;
+  --tinta-2: #a39a86;
+  --tinta-3: #6b6355;
+  --linha: rgba(245, 238, 219, 0.2);
+  --linha-forte: rgba(245, 238, 219, 0.5);
+
+  /* "sol" ficou como nome do acento: agora é o âmbar do chopp */
+  --sol: #f29a1d;
+  --sol-forte: #ffb23e;
+  --ouro: #b8893a;
+  /* títulos: dourado escovado (no lugar do prata da Akari) */
+  --dourado: linear-gradient(180deg, #ffe6ad 4%, #ffc35a 30%, #f29a1d 55%, #b8661a 78%, #ffd27a 98%);
+
+  --sans: 'Archivo Variable', 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --script: 'Yellowtail', cursive;
+
+  /* rótulos espaçados em caixa alta (menu, botões, textos do hero) */
+  --f-rotulo: clamp(10px, 0.68vw, 13px);
+  --f-lema: clamp(11px, 0.92vw, 17px);
+  --rastro: 0.27em;
+
+  --gutter: clamp(16px, 4.8vw, 96px);
+  --r-pilula: 999px;
+
+  /* curvas: entrada longa e mansa, saída curta */
+  --entra: cubic-bezier(0.16, 1, 0.3, 1);
+  --sai: cubic-bezier(0.55, 0, 0.75, 0.2);
+}
